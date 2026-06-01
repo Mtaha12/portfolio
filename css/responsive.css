@@ -1,24 +1,21 @@
-/* ===== RESPONSIVE DESIGN ===== */
+/* ==========================================================================
+   MUHAMMAD TAHA PORTFOLIO - RESPONSIVE DESIGN SYSTEM
+   ========================================================================== */
 
 /* Large Desktop */
-@media (max-width: 1400px) {
-    .container {
-        max-width: 1140px;
-    }
-}
-
-/* Desktop */
 @media (max-width: 1200px) {
     .container {
         max-width: 960px;
     }
-    
-    h1 { font-size: 3rem; }
-    h2 { font-size: 2.25rem; }
-    
-    .hero-image-container {
-        width: 350px;
-        height: 350px;
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.8rem;
+    }
+    .visual-container {
+        width: 320px;
+        height: 320px;
     }
 }
 
@@ -28,18 +25,22 @@
         max-width: 720px;
     }
     
-    /* Navigation */
+    /* Navigation Menu */
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: var(--navbar-height);
         flex-direction: column;
-        background-color: var(--bg-primary);
+        background-color: var(--bg-secondary);
         width: 100%;
+        height: calc(100vh - var(--navbar-height));
         text-align: center;
-        transition: 0.3s;
-        box-shadow: var(--shadow-lg);
-        padding: 2rem 0;
+        transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 40px 0;
+        gap: 30px;
+        border-top: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        align-items: center;
     }
     
     .nav-menu.active {
@@ -61,343 +62,166 @@
     .nav-toggle.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
+
+    /* Profile switcher sizing adjustment in navbar */
+    .profile-mode-switcher {
+        scale: 0.9;
+    }
     
-    /* Hero Section */
+    /* Hero Content */
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
+        gap: 40px;
     }
     
-    .hero-image {
-        order: -1;
-    }
-    
-    .hero-image-container {
-        width: 300px;
-        height: 300px;
-    }
-    
-    .hero-stats {
-        justify-content: center;
-    }
-    
-    /* About Section */
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    /* Timeline */
-    .timeline::after {
-        left: 31px;
-    }
-    
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-    }
-    
-    .timeline-item::after {
-        left: 21px;
-    }
-    
-    .timeline-item:nth-child(even) {
-        left: 0%;
-    }
-    
-    /* Skills Grid */
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Projects Grid */
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Contact Section */
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    /* Footer */
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .container {
-        max-width: 100%;
-        padding: 0 15px;
-    }
-    
-    /* Typography */
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.5rem; }
-    h4 { font-size: 1.25rem; }
-    
-    /* Buttons */
-    .hero-buttons {
+    .hero-text-block {
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
     
-    .btn {
-        width: 100%;
-        max-width: 250px;
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-stats {
         justify-content: center;
     }
     
-    /* Hero Section */
-    .hero {
-        min-height: auto;
-        padding: 120px 0 80px;
+    .hero-visual-block {
+        order: -1;
+    }
+    
+    /* About grid */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    /* Contact grid */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    /* Footer */
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Mobile Screen */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
     }
     
     .hero-subtitle {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
     }
     
-    .hero-image-container {
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons .resume-download-wrapper,
+    .hero-buttons #downloadResumeBtn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .resume-dropdown {
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .visual-container {
         width: 250px;
         height: 250px;
     }
     
-    .hero-stats {
-        flex-direction: column;
-        gap: 1rem;
+    .orbiting-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
     }
-    
-    /* About Section */
-    .about-buttons {
-        flex-direction: column;
+
+    /* Disable Custom Cursor on Touch Devices */
+    .custom-cursor {
+        display: none !important;
     }
-    
-    /* Project Filters */
-    .project-filters {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 1rem;
+    body {
+        cursor: auto !important;
     }
-    
-    .filter-btn {
-        flex-shrink: 0;
+
+    /* Form Rows */
+    .form-row-two {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
-    
-    /* Contact */
-    .contact-methods {
-        gap: 1.5rem;
+
+    .timeline-container {
+        padding-left: 30px;
     }
-    
-    .contact-method {
-        flex-direction: column;
-        text-align: center;
+    .timeline-container::before {
+        left: 10px;
     }
-    
-    /* Theme Toggle */
-    .theme-toggle {
-        right: 15px;
-        width: 45px;
-        height: 45px;
+    .experience-timeline-item::before {
+        left: -25px;
     }
-    
-    /* Back to Top */
-    .back-to-top {
-        right: 15px;
-        bottom: 15px;
-        width: 45px;
-        height: 45px;
+    .experience-card {
+        padding: 20px;
     }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
-    /* Typography */
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    
-    /* Section Padding */
-    section {
-        padding: 3rem 0;
+    .hero-title {
+        font-size: 2.1rem;
     }
     
-    /* Hero */
-    .hero-image-container {
+    .visual-container {
         width: 200px;
         height: 200px;
     }
     
-    .floating-icons i {
-        font-size: 1.5rem;
+    .skills-container-grid {
+        grid-template-columns: 1fr;
     }
     
-    /* Timeline */
-    .timeline-item {
-        padding-left: 50px;
-        padding-right: 15px;
+    .about-highlights-grid {
+        grid-template-columns: 1fr;
     }
-    
-    .timeline-content {
-        padding: 15px;
-    }
-    
-    /* Project Card */
-    .project-content {
-        padding: 1rem;
-    }
-    
-    /* Contact Form */
-    .contact-form {
-        padding: 1.5rem;
-    }
-    
-    /* Footer */
-    .footer {
-        padding: 2rem 0 1rem;
-    }
-}
 
-/* Ultra Small Mobile */
-@media (max-width: 320px) {
-    /* Typography */
-    h1 { font-size: 1.75rem; }
-    h2 { font-size: 1.5rem; }
-    
-    /* Hero */
-    .hero-image-container {
-        width: 180px;
-        height: 180px;
+    .contact-form-panel {
+        padding: 25px;
     }
-    
-    /* Buttons */
-    .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
-}
 
-/* ===== LANDSCAPE ORIENTATION ===== */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        min-height: auto;
-        padding: 100px 0 60px;
-    }
-    
-    .hero-content {
-        gap: 1rem;
-    }
-    
-    .hero-image-container {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .scroll-indicator {
-        display: none;
-    }
-}
-
-/* ===== HIGH DPI SCREENS ===== */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .profile-photo {
-       
-        image-rendering: -webkit-optimize-contrast;
-    }
-}
-
-/* ===== PRINT STYLES ===== */
-@media print {
-    .navbar,
-    .theme-toggle,
-    .scroll-indicator,
-    .back-to-top,
-    .hero-background {
-        display: none !important;
-    }
-    
-    body {
-        color: black;
-        background: white;
-    }
-    
-    .hero {
-        min-height: auto;
-        padding: 2rem 0;
-    }
-    
-    .btn {
-        border: 2px solid black !important;
-        color: black !important;
-        background: none !important;
-    }
-}
-
-/* ===== REDUCED MOTION ===== */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    .scroll-indicator,
-    .floating-icons,
-    .hero-image-border {
-        display: none;
-    }
-}
-
-/* ===== TOUCH DEVICES ===== */
-@media (hover: none) and (pointer: coarse) {
-    .btn:hover {
-        transform: none;
-    }
-    
-    .project-card:hover {
-        transform: none;
-    }
-    
-    .skill-category:hover {
-        transform: none;
-    }
-    
-    .nav-link:hover::after {
-        width: 0;
-    }
-    
-    .nav-link.active::after {
-        width: 100%;
-    }
-}
-
-/* ===== SAFARI SPECIFIC FIXES ===== */
-@supports (-webkit-appearance: none) {
-    .hero-image-border {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-    }
-}
-
-/* ===== FIREFOX SPECIFIC FIXES ===== */
-@-moz-document url-prefix() {
-    .skill-progress-bar {
-        transition: width 1.5s ease;
-    }
-}
-
-/* ===== EDGE SPECIFIC FIXES ===== */
-@supports (-ms-ime-align: auto) {
-    .hero-content {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
     }
 }

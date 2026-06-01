@@ -125,10 +125,10 @@ class ParticleSystem {
             this.createParticles();
         });
 
-        // Dark theme support
+        // Dark theme & Role support
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'data-theme') {
+                if (mutation.attributeName === 'data-theme' || mutation.attributeName === 'data-role') {
                     this.updateThemeColors();
                 }
             });
@@ -137,25 +137,20 @@ class ParticleSystem {
         observer.observe(document.documentElement, { attributes: true });
     }
 
-    // ===== ADD THIS FUNCTION TO YOUR PARTICLESYSTEM CLASS =====
-updateThemeColors() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    
-    if (isDark) {
-        this.config.colors.primary = '#60a5fa';
-        this.config.colors.secondary = '#93c5fd';
-        this.config.colors.accent = '#bfdbfe';
-    } else {
-        this.config.colors.primary = '#3b82f6';
-        this.config.colors.secondary = '#60a5fa';
-        this.config.colors.accent = '#93c5fd';
+    updateThemeColors() {
+        const rootStyle = getComputedStyle(document.documentElement);
+        const primary = rootStyle.getPropertyValue('--accent-primary').trim() || '#00e5ff';
+        const secondary = rootStyle.getPropertyValue('--accent-secondary').trim() || '#3b82f6';
+        
+        this.config.colors.primary = primary;
+        this.config.colors.secondary = secondary;
+        this.config.colors.accent = primary;
+        
+        // Update existing particle colors
+        this.particles.forEach(particle => {
+            particle.color = this.getParticleColor();
+        });
     }
-    
-    // Update existing particle colors
-    this.particles.forEach(particle => {
-        particle.color = this.getParticleColor();
-    });
-}
 
     animate() {
         if (!this.ctx || !this.canvas) return;
@@ -225,9 +220,11 @@ updateThemeColors() {
                     this.ctx.beginPath();
                     this.ctx.moveTo(particle.x, particle.y);
                     this.ctx.lineTo(other.x, other.y);
-                    this.ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+                    this.ctx.strokeStyle = this.config.colors.primary;
+                    this.ctx.globalAlpha = opacity;
                     this.ctx.lineWidth = 1;
                     this.ctx.stroke();
+                    this.ctx.globalAlpha = 1;
                 }
             }
         });
@@ -258,9 +255,11 @@ updateThemeColors() {
         // Draw mouse cursor effect
         this.ctx.beginPath();
         this.ctx.arc(this.mouse.x, this.mouse.y, this.config.mouseInteractionDistance, 0, Math.PI * 2);
-        this.ctx.strokeStyle = `rgba(59, 130, 246, 0.1)`;
+        this.ctx.strokeStyle = this.config.colors.primary;
+        this.ctx.globalAlpha = 0.1;
         this.ctx.lineWidth = 2;
         this.ctx.stroke();
+        this.ctx.globalAlpha = 1;
     }
 
     destroy() {

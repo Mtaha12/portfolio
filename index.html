@@ -1,249 +1,224 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Taha - Full Stack Developer | Portfolio</title>
-    <meta name="description" content="Full Stack Developer specializing in React, Node.js, and Python. Explore my projects and let's build something amazing together.">
+    <title>Muhammad Taha - Portfolio</title>
+    <meta name="description" content="Muhammad Taha - Portfolio. Explore projects, expertise, and resumes for Full-Stack Software Engineering and Technical Project Management.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Muhammad Taha - Full Stack Developer">
-    <meta property="og:description" content="Passionate developer with expertise in modern web technologies">
-    <meta property="og:image" content="./assets/og-image.png">
-    <meta property="og:url" content="https://yourportfolio.com">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Muhammad Taha - Full Stack Developer">
-    <meta name="twitter:description" content="Building amazing digital experiences">
-    <meta name="twitter:image" content="./assets/twitter-image.png">
+    <meta property="og:title" content="Muhammad Taha - Portfolio">
+    <meta property="og:description" content="Explore my portfolio showcasing engineering and project management achievements.">
+    <meta property="og:image" content="./assets/profile-photo.jpg">
+    <meta property="og:url" content="https://muhammad-taha-portfolio.com">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/responsive.css">
-    <link rel="stylesheet" href="./css/animations.css">
-    <!-- DEBUG: Check if dark theme CSS loads -->
-<link rel="stylesheet" href="./css/dark-theme.css" onload="console.log('Dark theme CSS loaded successfully')" onerror="console.error('Dark theme CSS failed to load')">
+    <!-- Google Fonts (Outfit for Titles, Inter for Body, JetBrains Mono for Code) -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/dark-theme.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fas fa-moon"></i>
-    </button>
-    
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <!-- Awwwards Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-wrap">
+            <div class="preloader-text-reveal">
+                <span>MUHAMMAD TAHA</span>
+            </div>
+            <div class="preloader-counter"><span id="preloaderPercentage">0</span>%</div>
+            <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderBarFill"></div></div>
+        </div>
+    </div>
+
+    <!-- Page Curtain Transition for Switching Profiles -->
+    <div class="page-curtain" id="pageCurtain">
+        <div class="curtain-panel"></div>
+        <div class="curtain-logo">MT</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="#home" class="nav-logo" aria-label="Go to Home">
                 <span class="logo-text">MT</span>
+            </a>
+            
+            <!-- Dual-Profile Switcher (Sticky in Navbar) -->
+            <div class="profile-mode-switcher" id="navbarSwitcher">
+                <button class="switcher-tab active" data-role="fullstack" id="navTabFS">
+                    <i class="fas fa-code"></i> <span>Full-Stack</span>
+                </button>
+                <button class="switcher-tab" data-role="projectmanager" id="navTabPM">
+                    <i class="fas fa-list-check"></i> <span>Product/PM</span>
+                </button>
+                <span class="switcher-slider"></span>
             </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link">Home</a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#projects" class="nav-link">Projects</a>
-                <a href="#achievements" class="nav-link">Achievements</a>
-                <a href="#blog" class="nav-link">Blog</a>
                 <a href="#contact" class="nav-link">Contact</a>
-              
-            </div>
-            <div class="nav-toggle" id="navToggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="nav-toggle" id="navToggle" aria-label="Toggle mobile menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero section-scroll">
         <div class="hero-background">
             <div class="particles" id="particles"></div>
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
         </div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text" data-aos="fade-up">
-                    <h1 class="hero-title">
-                        Hi, I'm <span class="highlight">Muhammad Taha</span>
+                <div class="hero-text-block">
+                    <div class="role-badge" id="heroBadge">
+                        <i class="fas fa-code-branch"></i> <span id="badgeText">Full-Stack Engineering</span>
+                    </div>
+                    <h1 class="hero-title select-reveal">
+                        Hi, I'm <span class="highlight" id="profileName">Muhammad Taha</span>
                     </h1>
-                    <div class="hero-subtitle">
-                        <span class="typing-text" id="typingText"></span>
-                        <span class="cursor">|</span>
-                    </div>
-                    <p class="hero-description">
-                        Passionate Full Stack Developer specializing in creating dynamic, 
-                        responsive web applications with modern technologies.
+                    <h2 class="hero-subtitle text-split-words" id="profileRoleTitle">
+                        Full-Stack Software Engineer
+                    </h2>
+                    <p class="hero-description" id="profileHeroDesc">
+                        Architecting scalable Web3 marketplaces, containerized systems, and real-time backend structures.
                     </p>
+                    
                     <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-primary btn-magnetic" id="heroViewWork">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="resume-download-wrapper">
+                            <button class="btn btn-outline btn-magnetic" id="downloadResumeBtn">
+                                <i class="fas fa-file-download"></i> <span>Get Resume</span>
+                            </button>
+                            <div class="resume-dropdown" id="resumeDropdown">
+                                <a href="./assets/Muhammad_Taha_Full_Stack_Resume.pdf" download id="dlFSResume" class="dropdown-item">
+                                    <i class="fas fa-code"></i> Full-Stack Dev PDF
+                                </a>
+                                <a href="./assets/Muhammad_Taha_Project_Management_Resume.pdf" download id="dlPMResume" class="dropdown-item">
+                                    <i class="fas fa-list-check"></i> Project Manager PDF
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number" data-target="50">0</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number" data-target="3">0</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number" data-target="100">0</span>
-                            <span class="stat-label">Happy Clients</span>
-                        </div>
+
+                    <div class="hero-stats" id="profileStats">
+                        <!-- Stats loaded dynamically -->
                     </div>
                 </div>
-                <div class="hero-image" data-aos="fade-left">
-                    <div class="hero-image-container">
+
+                <div class="hero-visual-block">
+                    <div class="visual-container">
+                        <div class="visual-bg-circle"></div>
                         <img src="./assets/profile-photo.jpg" alt="Muhammad Taha" class="profile-photo">
-                        <div class="hero-image-border"></div>
-                    </div>
-                    <div class="floating-icons">
-                        <i class="fab fa-react"></i>
-                        <i class="fab fa-node-js"></i>
-                        <i class="fab fa-python"></i>
-                        <i class="fab fa-js"></i>
+                        <!-- Orbiting Tech Elements -->
+                        <div class="orbiting-icons" id="orbitingIcons">
+                            <!-- Dynamic orbiting icons based on selection -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
+            <span class="scroll-mouse">
+                <span class="scroll-wheel"></span>
+            </span>
+            <span class="scroll-text">Scroll Down</span>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about section-scroll">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header text-center">
+                <span class="section-tag">01 / Profile</span>
                 <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know me better</p>
+                <div class="header-line"></div>
             </div>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <h3>Passionate Developer & Problem Solver</h3>
-                    <p>
-                        I'm a dedicated Full Stack Developer with expertise in modern web technologies. 
-                        My journey in tech started with a passion for creating innovative solutions 
-                        that make a difference.
-                    </p>
-                    <p>
-                        Currently focusing on React, Node.js, and Python, I love turning complex 
-                        problems into simple, beautiful, and intuitive designs.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Computer Science Student</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-code"></i>
-                            <span>3+ Years Coding</span>
-                        </div>
-                      
+            
+            <div class="about-grid">
+                <div class="about-text-content">
+                    <h3 id="aboutTitle" class="gradient-text">Architecting scalable platforms with an edge-case mindset</h3>
+                    <div id="aboutParagraphs" class="about-paragraphs">
+                        <!-- Paragraphs loaded dynamically -->
                     </div>
-                    <div class="about-buttons">
-                        <a href="./assets/resume.pdf" download class="btn btn-primary">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                        <a href="#contact" class="btn btn-outline">
-                            <i class="fas fa-envelope"></i> Hire Me
-                        </a>
+                    
+                    <div class="about-highlights-grid" id="aboutHighlights">
+                        <!-- Highlights loaded dynamically -->
                     </div>
-                </div>
-                <div class="about-skills" data-aos="fade-left">
-                    <h3>Technical Skills</h3>
-                    <div class="skill-bars">
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>JavaScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>React</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Node.js</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar" data-width="80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Python</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar" data-width="75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">My professional journey</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-date">2023 - Present</div>
-                    <div class="timeline-content">
-                        <h3>Full Stack Developer</h3>
-                        <h4>Freelance</h4>
-                        <p>Building responsive web applications for clients worldwide</p>
-                        <ul>
-                            <li>Developed 20+ custom web applications</li>
-                            <li>Improved performance by 40% on average</li>
-                            <li>Maintained 100% client satisfaction</li>
-                        </ul>
+                    <div class="about-action-buttons">
+                        <a href="#contact" class="btn btn-primary btn-magnetic">
+                            <span>Hire Me Now</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-date">2022 - 2023</div>
-                    <div class="timeline-content">
-                        <h3>Frontend Developer</h3>
-                        <h4>Tech Startup</h4>
-                        <p>Led frontend development for SaaS platform</p>
-                        <ul>
-                            <li>Built component library used by 50+ developers</li>
-                            <li>Reduced load time by 60%</li>
-                            <li>Mentored junior developers</li>
-                        </ul>
+
+                <div class="about-education-card glass-panel">
+                    <div class="card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Education</h3>
+                    </div>
+                    <div class="education-timeline">
+                        <div class="education-item">
+                            <span class="edu-date">2022 - 2026</span>
+                            <h4 class="edu-degree">Bachelor of Science in Software Engineering</h4>
+                            <p class="edu-school">FAST- National University of Computer and Emerging Sciences, Islamabad</p>
+                            <span class="edu-focus"><strong>Focus:</strong> System Design, Web Engineering, DevOps, Distributed Databases, Project Management.</span>
+                        </div>
+                        <div class="education-item">
+                            <span class="edu-date">2020 - 2022</span>
+                            <h4 class="edu-degree">F.Sc (Pre-Engineering)</h4>
+                            <p class="edu-school">Emalah Foundation College, Rawalpindi, Punjab</p>
+                            <span class="edu-focus"><strong>Subjects:</strong> Physics, Chemistry, Mathematics.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -251,139 +226,136 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <section id="skills" class="skills section-scroll">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Skills & Expertise</h2>
-                <p class="section-subtitle">Technologies I work with</p>
+            <div class="section-header text-center">
+                <span class="section-tag">02 / Expertise</span>
+                <h2 class="section-title">Skills & Competencies</h2>
+                <div class="header-line"></div>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category" data-aos="fade-up">
-                    <h3><i class="fas fa-code"></i> Frontend</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Vue.js</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">SASS</span>
-                        <span class="skill-tag">Tailwind</span>
-                    </div>
-                </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Django</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">GraphQL</span>
-                    </div>
-                </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3><i class="fas fa-tools"></i> Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Webpack</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Jira</span>
-                        <span class="skill-tag">Linux</span>
-                    </div>
-                </div>
+
+            <div class="skills-container-grid" id="skillsGrid">
+                <!-- Renders dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience section-scroll">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">03 / Journey</span>
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="timeline-container" id="timelineContainer">
+                <!-- Timeline items render dynamically -->
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <section id="projects" class="projects section-scroll">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Some of my recent work</p>
-                <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="web">Web Apps</button>
-                    <button class="filter-btn" data-filter="mobile">Mobile</button>
-                    <button class="filter-btn" data-filter="game">Games</button>
-                </div>
+            <div class="section-header text-center">
+                <span class="section-tag">04 / Portfolio</span>
+                <h2 class="section-title">Featured Work</h2>
+                <div class="header-line"></div>
             </div>
+
             <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be loaded dynamically -->
-            </div>
-            <div class="projects-load-more" data-aos="fade-up">
-                <button class="btn btn-outline" id="loadMoreProjects">Load More Projects</button>
+                <!-- Project cards render dynamically -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section-scroll">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's work together</p>
+            <div class="section-header text-center">
+                <span class="section-tag">05 / Contact</span>
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="header-line"></div>
             </div>
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>Let's discuss your project</h3>
-                    <p>I'm always interested in new opportunities and collaborations.</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
+
+            <div class="contact-grid">
+                <div class="contact-info-panel glass-panel">
+                    <h3>Discuss your project or hire me</h3>
+                    <p>I am open to full-time engineering and product management opportunities, contract work, or technical consulting. Let's build something exceptional.</p>
+                    
+                    <div class="contact-methods-list">
+                        <div class="contact-item btn-magnetic" id="contactEmail">
+                            <div class="icon-wrap">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="item-detail">
+                                <span>Send an Email</span>
                                 <a href="mailto:mtaha2004.22.2@gmail.com">mtaha2004.22.2@gmail.com</a>
                             </div>
                         </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <a href="tel:+1234567890">+92 325 8651536</a>
+                        <div class="contact-item btn-magnetic" id="contactPhone">
+                            <div class="icon-wrap">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="item-detail">
+                                <span>Give a Call</span>
+                                <a href="tel:+923258651536">+92 325 8651536</a>
                             </div>
                         </div>
-                        <div class="contact-method">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <span>Rawalpindi, Pakistan</span>
+                        <div class="contact-item btn-magnetic" id="contactLocation">
+                            <div class="icon-wrap">
+                                <i class="fas fa-map-location-dot"></i>
+                            </div>
+                            <div class="item-detail">
+                                <span>Based In</span>
+                                <span>Rawalpindi, Punjab, Pakistan</span>
                             </div>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/muhammad-taha-53a32231a" target="_blank" rel="noopener noreferrer" title="LinkedIn (opens in a new tab)" aria-label="LinkedIn (opens in a new tab)">
-                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+
+                    <div class="social-links-container">
+                        <a href="https://linkedin.com/in/muhammad-taha-53a32231a" target="_blank" rel="noopener noreferrer" class="social-circle btn-magnetic" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="https://github.com/Mtaha12" target="_blank" rel="noopener noreferrer" title="GitHub (opens in a new tab)" aria-label="GitHub (opens in a new tab)">
-                            <i class="fab fa-github" aria-hidden="true"></i>
+                        <a href="https://github.com/Mtaha12" target="_blank" rel="noopener noreferrer" class="social-circle btn-magnetic" aria-label="GitHub Profile">
+                            <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.instagram.com/maliktaha4?igsh=MWNrejZjanRmeWlyeQ==" target="_blank" rel="noopener noreferrer" title="Instagram (opens in a new tab)" aria-label="Instagram (opens in a new tab)">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        <a href="https://www.instagram.com/maliktaha4?igsh=MWNrejZjanRmeWlyeQ==" target="_blank" rel="noopener noreferrer" class="social-circle btn-magnetic" aria-label="Instagram Profile">
+                            <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
-                <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
+
+                <div class="contact-form-panel glass-panel">
+                    <form id="contactForm" novalidate>
+                        <div class="form-row-two">
+                            <div class="form-group-custom">
+                                <input type="text" name="name" id="contactName" required placeholder=" ">
+                                <label for="contactName">Your Name</label>
+                                <span class="input-line"></span>
+                                <span class="error-msg">Name is required</span>
+                            </div>
+                            <div class="form-group-custom">
+                                <input type="email" name="email" id="contactEmailInput" required placeholder=" ">
+                                <label for="contactEmailInput">Your Email</label>
+                                <span class="input-line"></span>
+                                <span class="error-msg">Enter a valid email</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
+                        <div class="form-group-custom">
+                            <input type="text" name="subject" id="contactSubject" required placeholder=" ">
+                            <label for="contactSubject">Subject</label>
+                            <span class="input-line"></span>
+                            <span class="error-msg">Subject is required</span>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="subject" placeholder="Subject" required>
+                        <div class="form-group-custom">
+                            <textarea name="message" id="contactMessage" required placeholder=" " rows="5"></textarea>
+                            <label for="contactMessage">Your Message</label>
+                            <span class="input-line"></span>
+                            <span class="error-msg">Message must be at least 10 characters</span>
                         </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-magnetic form-submit-btn">
                             <span>Send Message</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -396,57 +368,39 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Muhammad Taha</h3>
-                    <p>Full Stack Developer creating amazing digital experiences.</p>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2>MT</h2>
+                    <p>Fusing technical brilliance with Agile product leadership.</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/muhammad-taha-53a32231a" target="_blank" rel="noopener noreferrer" title="LinkedIn (opens in a new tab)" aria-label="LinkedIn (opens in a new tab)">
-                            <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://github.com/Mtaha12" target="_blank" rel="noopener noreferrer" title="GitHub (opens in a new tab)" aria-label="GitHub (opens in a new tab)">
-                            <i class="fab fa-github" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Muhammad Taha. All rights reserved.</p>
+                <p>&copy; 2026 Muhammad Taha. All rights reserved. Designed for impact.</p>
             </div>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top btn-magnetic" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Scripts -->
-     <script>
-// IMMEDIATE THEME CHECK - Add this right after <body> tag
-(function() {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-    console.log('Initial theme set to:', theme);
-})();
-</script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/main.js"></script>
+    <!-- Scripts (GSAP, ScrollTrigger, Lenis, and Portfolio code) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    
+    <script src="./js/profile.js"></script>
     <script src="./js/projects.js"></script>
     <script src="./js/contact.js"></script>
+    <script src="./js/particles.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
